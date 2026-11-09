@@ -3,9 +3,10 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 def prepare_data():
-    csv_path = "/content/tourism.csv"
-    if not os.path.exists(csv_path):
-        raise FileNotFoundError(f"{csv_path} not found! Please run Data Registration first.")
+    if os.path.exists("tourism_project/data/tourism.csv"):
+    csv_path = "tourism_project/data/tourism.csv"
+else:
+    csv_path = "content/tourism.csv" 
 
     df = pd.read_csv(csv_path)
     print(f"Original dataset shape: {df.shape}")
