@@ -56,3 +56,10 @@ jobs:
       - name: Run Model Training & MLflow tracking
         run: |
           echo "Running model training and logging to MLflow..."
+          - name: Commit and push trained model artifact
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add tourism_project/deployment/best_machine_failure_model_v1.joblib
+          git commit -m "chore: auto-commit trained model artifact [skip ci]" || echo "No changes to commit"
+          git push
