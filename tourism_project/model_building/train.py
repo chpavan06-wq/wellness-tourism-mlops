@@ -1,4 +1,5 @@
 # for data manipulation
+import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import make_column_transformer
@@ -97,7 +98,6 @@ with mlflow.start_run():
 
   
     # Save model artifact correctly
-    import os
     os.makedirs("tourism_project/deployment", exist_ok=True)
     
     model_path = "tourism_project/deployment/best_machine_failure_model_v1.joblib"
