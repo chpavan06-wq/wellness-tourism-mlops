@@ -95,8 +95,12 @@ with mlflow.start_run():
         "test_f1-score": test_report["1"]["f1-score"]
     })
 
+  
     # Save model artifact correctly
-    model_path = "model.joblib"
+    import os
+    os.makedirs("tourism_project/deployment", exist_ok=True)
+    
+    model_path = "tourism_project/deployment/best_machine_failure_model_v1.joblib"
     joblib.dump(best_model, model_path)
     mlflow.log_artifact(model_path, artifact_path="model")
     print(f"Model saved to {model_path}")
