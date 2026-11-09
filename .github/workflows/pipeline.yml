@@ -56,7 +56,9 @@ jobs:
       - name: Run Model Training & MLflow tracking
         run: |
           echo "Running model training and logging to MLflow..."
-          - name: Commit and push trained model artifact
+          python tourism_project/model_building/train.py
+
+      - name: Commit and push trained model artifact
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
