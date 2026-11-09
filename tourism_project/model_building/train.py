@@ -1,3 +1,8 @@
+# Load preprocessed splits directly from the data folder
+Xtrain = pd.read_csv("tourism_project/data/Xtrain.csv")
+Xtest  = pd.read_csv("tourism_project/data/Xtest.csv")
+ytrain = pd.read_csv("tourism_project/data/ytrain.csv").squeeze()
+ytest  = pd.read_csv("tourism_project/data/ytest.csv").squeeze()
 import os
 import pandas as pd
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
