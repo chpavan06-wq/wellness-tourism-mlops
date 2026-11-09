@@ -6,47 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  register-dataset:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install pandas
-
-      - name: Run Dataset Registration
-        run: |
-          python tourism_project/model_building/data_register.py || echo "Dataset registration script check passed"
-
-  data-preparation:
-    needs: register-dataset
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pip install pandas scikit-learn
-
-      - name: Run Data Preparation
-        run: |
-          python tourism_project/model_building/prep.py
-
   model-training:
-    needs: data-preparation
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -62,6 +22,11 @@ jobs:
       - name: Install dependencies
         run: |
           pip install mlflow scikit-learn pandas joblib xgboost
+
+      - name: Run Data Preparation
+        run: |
+          echo "Preparing data..."
+          python tourism_project/model_building/prep.py
 
       - name: Run Model Training & MLflow tracking
         env:
