@@ -1,8 +1,3 @@
-# Xtrain/Xtest/ytrain/ytest are loaded from the data path
-Xtrain = pd.read_csv("tourism_project/data/Xtrain.csv")
-Xtest  = pd.read_csv("tourism_project/data/Xtest.csv")
-ytrain = pd.read_csv("tourism_project/data/ytrain.csv").squeeze()
-ytest  = pd.read_csv("tourism_project/data/ytest.csv").squeeze()
 import os
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -11,7 +6,7 @@ def prepare_data():
     if os.path.exists("tourism_project/data/tourism.csv"):
         csv_path = "tourism_project/data/tourism.csv"
     else:
-        csv_path = "content/tourism.csv" 
+        csv_path = "/content/tourism.csv" 
 
     df = pd.read_csv(csv_path)
     print(f"Original dataset shape: {df.shape}")
@@ -57,7 +52,7 @@ def prepare_data():
     y_train.to_csv("tourism_project/data/ytrain.csv", index=False)
     y_test.to_csv("tourism_project/data/ytest.csv", index=False)
 
-    print(" DATA PREPARATION SCRIPT WRITTEN & READY")
+    print("DATA PREPARATION SCRIPT COMPLETED SUCCESSFULLY")
     print(f"X_train shape: {X_train.shape} | X_test shape: {X_test.shape}")
 
 if __name__ == "__main__":
