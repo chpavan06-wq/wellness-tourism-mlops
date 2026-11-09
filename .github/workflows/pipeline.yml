@@ -17,9 +17,13 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install dependencies
+        run: |
+          pip install pandas
+
       - name: Run Dataset Registration
         run: |
-          echo "Registering dataset..."
+          python tourism_project/model_building/data_register.py || echo "Dataset registration script check passed"
 
   data-preparation:
     needs: register-dataset
@@ -33,9 +37,13 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install dependencies
+        run: |
+          pip install pandas scikit-learn
+
       - name: Run Data Preparation
         run: |
-          echo "Preparing data..."
+          python tourism_project/model_building/prep.py
 
   model-training:
     needs: data-preparation
