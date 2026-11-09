@@ -4,9 +4,9 @@ from sklearn.model_selection import train_test_split
 
 def prepare_data():
     if os.path.exists("tourism_project/data/tourism.csv"):
-    csv_path = "tourism_project/data/tourism.csv"
-else:
-    csv_path = "content/tourism.csv" 
+        csv_path = "tourism_project/data/tourism.csv"
+    else:
+        csv_path = "content/tourism.csv" 
 
     df = pd.read_csv(csv_path)
     print(f"Original dataset shape: {df.shape}")
@@ -45,12 +45,12 @@ else:
         X_encoded, y, test_size=0.2, random_state=42, stratify=y
     )
 
-    # Save splits locally as artifacts
-    X_train.to_csv("Xtrain.csv", index=False)
-    X_test.to_csv("Xtest.csv", index=False)
-    y_train.to_csv("ytrain.csv", index=False)
-    y_test.to_csv("ytest.csv", index=False)
-
+    # Ensure data output directory exists and save splits
+    os.makedirs("tourism_project/data", exist_ok=True)
+    X_train.to_csv("tourism_project/data/Xtrain.csv", index=False)
+    X_test.to_csv("tourism_project/data/Xtest.csv", index=False)
+    y_train.to_csv("tourism_project/data/ytrain.csv", index=False)
+    y_test.to_csv("tourism_project/data/ytest.csv", index=False)
 
     print(" DATA PREPARATION SCRIPT WRITTEN & READY")
     print(f"X_train shape: {X_train.shape} | X_test shape: {X_test.shape}")
