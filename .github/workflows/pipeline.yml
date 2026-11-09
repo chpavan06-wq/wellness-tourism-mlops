@@ -56,6 +56,8 @@ jobs:
           pip install mlflow scikit-learn pandas joblib xgboost
 
       - name: Run Model Training & MLflow tracking
+        env:
+          MLFLOW_ALLOW_FILE_STORE: "true"
         run: |
           echo "Running model training and logging to MLflow..."
           python tourism_project/model_building/train.py
