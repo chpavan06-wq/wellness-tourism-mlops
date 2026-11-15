@@ -4,7 +4,8 @@ import pandas as pd
 import joblib
 
 # Load the model committed by the pipeline (sits next to this file)
-model_path = os.path.join(os.path.dirname(__file__), "best_wellness_model_v1.joblib")
+# Streamlit Cloud runs from the repository root directory
+model_path = "tourism_project/deployment/best_wellness_model_v1.joblib"
 model = joblib.load(model_path)
 
 st.title("Wellness Tourism Package Purchase Prediction App")
